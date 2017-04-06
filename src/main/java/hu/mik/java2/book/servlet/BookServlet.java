@@ -22,6 +22,8 @@ public class BookServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		BookService bookService = ServiceUtils.getBookService();
 		req.setAttribute("books", bookService.listBooks());
+		req.setAttribute("username", req.getRemoteUser());
+		req.setAttribute("isEditor", req.isUserInRole("editor"));
 		
 		RequestDispatcher requestDispatcher = 
 				req.getRequestDispatcher("/book_list.jsp");

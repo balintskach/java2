@@ -9,6 +9,7 @@
 <title>Könyvek listája</title>
 </head>
 <body>
+<span>Üdvözlöm <c:out value="${username}"></c:out>. <a href="${pageContext.request.contextPath}/logout">Kilépés</a></span>
 	<table border= "1">
 		<tr>
 			<th>Azonosító</th>
@@ -25,9 +26,12 @@
 				<td><c:out value="${book.author}" /></td>
 				<td><c:out value="${book.description}" /></td>
 				<td><c:out value="${book.pubYear}" /></td>
-				<td><a href="book_edit?bookId=${book.id}" >Szerkesztés</a>
+				<td>
 				<a href="book_details?bookId=${book.id}" >Megtekintés</a>
+				<c:if test="${isEditor}">
+				<a href="book_edit?bookId=${book.id}" >Szerkesztés</a>
 				<a href="book_delete?bookId=${book.id}" >Törlés</a>
+				</c:if>
 				</td>
 			</tr>
 		</c:forEach>
